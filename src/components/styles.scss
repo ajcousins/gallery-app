@@ -1,0 +1,44 @@
+* {
+  //   font-family: sans-serif;
+  font-family: "Share Tech Mono", monospace;
+  color: rgb(38, 38, 38);
+}
+
+body {
+  background-color: #cfcfcb;
+}
+
+input {
+  font-size: 1rem;
+  padding: 1em 0.5em;
+  margin-bottom: 1em;
+
+  box-shadow: inset 3px 4px 0 #00000036;
+  background: #00000012;
+  border: 1px solid black;
+}
+
+.small-container {
+  width: 350px;
+  margin: 20vh auto;
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  //   background-color: red;
+
+  & label {
+    margin-bottom: 0.5em;
+  }
+
+  &__btn {
+    background-color: #00000012;
+    margin-left: 50%;
+    width: 50%;
+    padding: 0.7em 1em;
+    margin-bottom: 1em;
+    border-radius: 0;
+    border: 1px solid black;
+  }
+}
