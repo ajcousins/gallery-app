@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import Gallery from "./Gallery";
+import NewCollection from "./NewCollection";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Gallery} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
+
             <Route path='/signup' component={Signup} />
             <Route path='/login' component={Login} />
           </Switch>

@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import UploadForm from "./UploadForm";
 import ImageGrid from "./ImageGrid";
 import NavBar from "./NavBar";
+import NewCollection from "./NewCollection";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
@@ -29,8 +30,9 @@ export default function Dashboard() {
         handleLogout={handleLogout}
       />
 
-      <UploadForm />
-      <ImageGrid />
+      <NewCollection>New Collection</NewCollection>
+      {/* <UploadForm />
+      <ImageGrid /> */}
     </div>
   );
 }
