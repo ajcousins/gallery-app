@@ -9,7 +9,10 @@ const useStorage = (file) => {
 
   useEffect(() => {
     // references
-    const storageRef = projectStorage.ref(file.name);
+    // const storageRef = projectStorage.ref(file.name);
+    const storageRef = projectStorage.ref(
+      `${new Date().toLocaleString().replace(/\/|:|,|\s/gi, "")}_${file.name}`
+    );
     const collectionRef = projectFirestore.collection("images");
     ////// Could pass collection name as prop into hook for specified collection names?
 

@@ -3,6 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import UploadForm from "./UploadForm";
 import ImageGrid from "./ImageGrid";
+import NavBar from "./NavBar";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
@@ -21,15 +22,13 @@ export default function Dashboard() {
   }
 
   return (
-    <div>
-      <h2>Dashboard</h2>
-      {error && <div className='error-msg'>{error}</div>}
-      <div className='dashboard'>
-        <strong>Email: </strong> {currentUser.email}
-      </div>
-      <div>
-        <button onClick={handleLogout}>Log Out</button>
-      </div>
+    <div className='app-body'>
+      <NavBar
+        error={error}
+        currentUser={currentUser}
+        handleLogout={handleLogout}
+      />
+
       <UploadForm />
       <ImageGrid />
     </div>

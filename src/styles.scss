@@ -26,6 +26,7 @@ button {
   background-color: #00000012;
   border: 1px solid black;
   padding: 0.7em 1em;
+
   cursor: pointer;
   &:hover {
     background-color: rgba(89, 89, 89, 0.233);
@@ -35,6 +36,11 @@ button {
 .small-container {
   width: 350px;
   margin: 20vh auto;
+}
+
+.app-body {
+  min-width: 350px;
+  margin: 0 5em;
 }
 
 .user-form {
@@ -72,9 +78,23 @@ button {
   color: white;
 }
 
-.dashboard {
-  margin-bottom: 1em;
+.nav-bar {
+  display: flex;
+  // background-color: red;
+  align-items: center;
+
+  &__email {
+    margin-left: auto;
+  }
+  &__logout {
+    margin-left: 1em;
+    margin-right: 0;
+  }
 }
+
+// .dashboard {
+//   margin-bottom: 1em;
+// }
 
 .progress-bar {
   background-color: white;
