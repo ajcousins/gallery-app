@@ -2,34 +2,25 @@ import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 
-export default function Signup() {
+export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const confirmRef = useRef();
-  // const formRef = useRef();
-  const { signup } = useAuth();
+
+  const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // console.log(formRef);
-    console.log("passwordRef", passwordRef);
-    console.log("passwordRef.current", passwordRef.current);
-    console.log("passwordRef.current.value", passwordRef.current.value);
-
-    if (passwordRef.current.value !== confirmRef.current.value) {
-      return setError("Passwords do not match");
-    }
 
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      await login(emailRef.current.value, passwordRef.current.value);
       history.push("/");
     } catch {
-      setError("Failed to create an account");
+      setError("Failed to sign in");
     }
     setLoading(false);
   }
@@ -37,7 +28,7 @@ export default function Signup() {
   return (
     <div>
       <div className='small-container'>
-        <h2>Sign Up</h2>
+        <h2>Log In</h2>
         <form className='user-form' onSubmit={handleSubmit}>
           {error && <div className='user-form__error-msg'>{error}</div>}
           <label for='email'>Email</label>
@@ -46,15 +37,12 @@ export default function Signup() {
           <label for='password'>Password</label>
           <input type='password' id='password' ref={passwordRef} required />
 
-          <label for='confirm'>Confirm Password</label>
-          <input type='password' id='confirm' ref={confirmRef} required />
-
           <button className='user-form__btn' type='submit' disabled={loading}>
-            Sign Up
+            Log In
           </button>
         </form>
-        <div>Already have an account?</div>
-        <Link to='/login'>Log In</Link>
+
+        <Link to='/signup'>Sign Up</Link>
       </div>
     </div>
   );

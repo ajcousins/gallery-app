@@ -16,6 +16,20 @@ input {
   box-shadow: inset 3px 4px 0 #00000036;
   background: #00000012;
   border: 1px solid black;
+
+  &:focus {
+    outline: 1px solid black;
+  }
+}
+
+button {
+  background-color: #00000012;
+  border: 1px solid black;
+  padding: 0.7em 1em;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(89, 89, 89, 0.233);
+  }
 }
 
 .small-container {
@@ -33,12 +47,27 @@ input {
   }
 
   &__btn {
-    background-color: #00000012;
     margin-left: 50%;
     width: 50%;
-    padding: 0.7em 1em;
     margin-bottom: 1em;
-    border-radius: 0;
-    border: 1px solid black;
+    // border-radius: 0;
+
+    &:focus {
+      outline: 1px solid black;
+    }
+
+    &:focus {
+      outline: 1px solid #0000007f;
+      color: #0000007f;
+    }
+  }
+
+  &__error-msg {
+    background-color: #ff6b6b;
+    text-align: center;
+    padding: 0.8em 1em;
+    margin-bottom: 1em;
+    border-radius: 0.5em;
+    color: white;
   }
 }
