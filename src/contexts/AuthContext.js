@@ -8,7 +8,8 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState("loading");
+  // const [signInCheck, setSignInCheck] = useState(false);
 
   function signup(email, password) {
     // returns promise
@@ -28,11 +29,13 @@ export function AuthProvider({ children }) {
       setCurrentUser(user);
     });
 
+    // setSignInCheck(true);
     return unsubscribe;
   }, []);
 
   const value = {
     currentUser,
+    // signInCheck,
     signup,
     login,
     logout,

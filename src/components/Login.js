@@ -7,6 +7,7 @@ export default function Login() {
   const passwordRef = useRef();
 
   const { login } = useAuth();
+  const { currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -18,7 +19,7 @@ export default function Login() {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      history.push("/dashboard");
     } catch {
       setError("Failed to sign in");
     }
@@ -44,6 +45,7 @@ export default function Login() {
 
         <Link to='/signup'>Sign Up</Link>
       </div>
+      {JSON.stringify(currentUser)}
     </div>
   );
 }

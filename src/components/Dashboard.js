@@ -17,13 +17,17 @@ export default function Dashboard() {
       setError("Failed to log out");
     }
   }
+
   return (
     <div>
       <h2>Profile</h2>
       {error && <div className='user-form__error-msg'>{error}</div>}
-      <strong>Email: </strong>
-      {currentUser.email}
-      <button onClick={handleLogout}>Log Out</button>
+      <div className='dashboard'>
+        <strong>Email: </strong> {currentUser.email}
+      </div>
+      <div>
+        <button onClick={handleLogout}>Log Out</button>
+      </div>
     </div>
   );
 }
