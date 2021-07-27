@@ -61,17 +61,45 @@ button {
       color: #0000007f;
     }
   }
+}
 
-  &__error-msg {
-    background-color: #ff6b6b;
-    text-align: center;
-    padding: 0.8em 1em;
-    margin-bottom: 1em;
-    border-radius: 0.5em;
-    color: white;
-  }
+.error-msg {
+  background-color: #ff6b6b;
+  text-align: center;
+  padding: 0.8em 1em;
+  margin-bottom: 1em;
+  border-radius: 0.5em;
+  color: white;
 }
 
 .dashboard {
   margin-bottom: 1em;
+}
+
+.progress-bar {
+  background-color: white;
+  padding: 0.5em 0;
+}
+
+.img-grid {
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+
+  &__wrap {
+    overflow: hidden;
+    height: 0;
+    padding: 50% 0;
+    position: relative;
+  }
+
+  & img {
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 150%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }

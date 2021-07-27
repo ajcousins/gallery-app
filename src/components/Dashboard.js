@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import UploadForm from "./UploadForm";
+import ImageGrid from "./ImageGrid";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
@@ -20,14 +22,16 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h2>Profile</h2>
-      {error && <div className='user-form__error-msg'>{error}</div>}
+      <h2>Dashboard</h2>
+      {error && <div className='error-msg'>{error}</div>}
       <div className='dashboard'>
         <strong>Email: </strong> {currentUser.email}
       </div>
       <div>
         <button onClick={handleLogout}>Log Out</button>
       </div>
+      <UploadForm />
+      <ImageGrid />
     </div>
   );
 }

@@ -39,7 +39,7 @@ export default function Signup() {
       <div className='small-container'>
         <h2>Sign Up</h2>
         <form className='user-form' onSubmit={handleSubmit}>
-          {error && <div className='user-form__error-msg'>{error}</div>}
+          {error && <div className='error-msg'>{error}</div>}
           <label for='email'>Email</label>
           <input type='email' id='email' ref={emailRef} required />
 

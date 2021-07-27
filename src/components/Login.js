@@ -31,7 +31,7 @@ export default function Login() {
       <div className='small-container'>
         <h2>Log In</h2>
         <form className='user-form' onSubmit={handleSubmit}>
-          {error && <div className='user-form__error-msg'>{error}</div>}
+          {error && <div className='error-msg'>{error}</div>}
           <label for='email'>Email</label>
           <input type='email' id='email' ref={emailRef} required />
 
