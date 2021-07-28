@@ -2,6 +2,7 @@
   //   font-family: sans-serif;
   font-family: "Share Tech Mono", monospace;
   color: rgb(38, 38, 38);
+  box-sizing: border-box;
 }
 
 body {
@@ -12,7 +13,6 @@ input {
   font-size: 1rem;
   padding: 1em 0.5em;
   margin-bottom: 1em;
-
   box-shadow: inset 3px 4px 0 #00000036;
   background: #00000012;
   border: 1px solid black;
@@ -121,5 +121,31 @@ button {
     position: absolute;
     top: 0;
     left: 0;
+  }
+}
+
+.new-collection {
+  &__start-btn {
+    margin-bottom: 1em;
+  }
+
+  &__container {
+    width: 100%;
+    border: 2px solid black;
+    padding: 1em;
+  }
+
+  &__form-container {
+    display: flex;
+    flex-direction: column;
+
+    & label {
+      margin-bottom: 0.5em;
+    }
+
+    & button {
+      width: 6em;
+      margin: 0 1em;
+    }
   }
 }
