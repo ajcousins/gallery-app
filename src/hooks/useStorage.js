@@ -17,12 +17,35 @@ const useStorage = (file, collection) => {
     const collectionRef = projectFirestore.collection(collection);
     ////// Could pass collection name as prop into hook for specified collection names?
 
+    // get collection list
+    let collectionArray = [];
+    const register = projectFirestore.collection("00_admin").doc("register");
+    register
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          if (doc.data().collections.includes(collection)) {
+            collectionArray = [...doc.data().collections];
+          } else {
+            collectionArray = [...doc.data().collections, collection];
+          }
+
+          // return doc.data();
+        } else {
+          collectionArray.push(collection);
+        }
+      })
+      .catch((err) => {});
+
+    let bytes; // for use later when calculating storage usage
+
     // upload file
     storageRef.put(file).on(
       "state_changed",
       (snap) => {
         let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
         setProgress(percentage);
+        bytes = snap.totalBytes;
       },
       (err) => {
         setError(err);
@@ -30,13 +53,18 @@ const useStorage = (file, collection) => {
       async () => {
         // fires when upload is completed
         const url = await storageRef.getDownloadURL();
+
         // adds image to database/ firestore
         const createdAt = timestamp();
-        collectionRef.add({ url, createdAt });
+        collectionRef.add({ url, createdAt, bytes });
+        projectFirestore
+          .collection("00_admin")
+          .doc("register")
+          .set({ collections: collectionArray }, { merge: true });
         setUrl(url);
       }
     );
-  }, [file]);
+  }, [file, collection]);
 
   return { progress, url, error };
 };
