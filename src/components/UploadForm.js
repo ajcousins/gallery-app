@@ -9,6 +9,12 @@ export default function UploadForm(props) {
 
   function changeHandler(e) {
     let selected = e.target.files[0];
+    console.log(selected);
+
+    if (selected && selected.size > 5242880) {
+      setError("File size must not exceed 5 MB");
+      return;
+    }
 
     if (selected && types.includes(selected.type)) {
       setFile(selected);
