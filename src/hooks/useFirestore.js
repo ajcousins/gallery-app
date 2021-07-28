@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { projectFirestore } from "../firebase";
 
+// Returns images from specified collection.
 export default function useFirestore(collection) {
   const [docs, setDocs] = useState([]);
 

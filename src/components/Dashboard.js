@@ -30,9 +30,9 @@ export default function Dashboard() {
         handleLogout={handleLogout}
       />
 
-      <NewCollection>New Collection</NewCollection>
-      {/* <UploadForm />
-      <ImageGrid /> */}
+      <NewCollection />
+      {/* <UploadForm /> */}
+      {/* <ImageGrid /> */}
     </div>
   );
 }

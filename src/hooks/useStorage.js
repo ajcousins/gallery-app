@@ -2,7 +2,8 @@ import { storage } from "firebase";
 import React, { useState, useEffect } from "react";
 import { projectStorage, projectFirestore, timestamp } from "../firebase";
 
-const useStorage = (file) => {
+// Saves image to storage and saves reference of image to firestore.
+const useStorage = (file, collection) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
@@ -13,7 +14,7 @@ const useStorage = (file) => {
     const storageRef = projectStorage.ref(
       `${new Date().toLocaleString().replace(/\/|:|,|\s/gi, "")}_${file.name}`
     );
-    const collectionRef = projectFirestore.collection("images");
+    const collectionRef = projectFirestore.collection(collection);
     ////// Could pass collection name as prop into hook for specified collection names?
 
     // upload file
