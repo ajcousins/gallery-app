@@ -27,7 +27,11 @@ export default function UploadForm(props) {
 
   return (
     <form>
-      <input type='file' onChange={changeHandler} />
+      <input
+        type='file'
+        onChange={changeHandler}
+        style={{ marginBottom: "1em" }}
+      />
       <div>
         {error && <div className='error-msg'>{error}</div>}
         {file && <div>{file.name}</div>}

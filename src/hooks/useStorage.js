@@ -11,9 +11,10 @@ const useStorage = (file, collection) => {
   useEffect(() => {
     // references
     // const storageRef = projectStorage.ref(file.name);
-    const storageRef = projectStorage.ref(
-      `${new Date().toLocaleString().replace(/\/|:|,|\s/gi, "")}_${file.name}`
-    );
+    const refString = `${new Date()
+      .toLocaleString()
+      .replace(/\/|:|,|\s/gi, "")}_${file.name}`;
+    const storageRef = projectStorage.ref(refString);
     const collectionRef = projectFirestore.collection(collection);
     ////// Could pass collection name as prop into hook for specified collection names?
 
@@ -24,18 +25,23 @@ const useStorage = (file, collection) => {
       .get()
       .then((doc) => {
         if (doc.exists) {
-          if (doc.data().collections.includes(collection)) {
+          if (existsInCollection(doc.data().collections, collection)) {
             collectionArray = [...doc.data().collections];
           } else {
-            collectionArray = [...doc.data().collections, collection];
+            collectionArray = [
+              ...doc.data().collections,
+              JSON.stringify({ title: collection, front: refString }),
+            ];
           }
-
-          // return doc.data();
         } else {
-          collectionArray.push(collection);
+          collectionArray.push(
+            JSON.stringify({ title: collection, front: refString })
+          );
         }
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log("Error: ", err);
+      });
 
     let bytes; // for use later when calculating storage usage
 
@@ -56,7 +62,7 @@ const useStorage = (file, collection) => {
 
         // adds image to database/ firestore
         const createdAt = timestamp();
-        collectionRef.add({ url, createdAt, bytes });
+        collectionRef.add({ refString, url, createdAt, bytes });
         projectFirestore
           .collection("00_admin")
           .doc("register")
@@ -70,3 +76,7 @@ const useStorage = (file, collection) => {
 };
 
 export default useStorage;
+
+const existsInCollection = (collectionArr, collection) => {
+  return collectionArr.some((item) => JSON.parse(item).title === collection);
+};

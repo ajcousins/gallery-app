@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import UploadForm from "./UploadForm";
 import ImageGrid from "./ImageGrid";
 
-export default function NewCollection() {
+export default function NewCollection(props) {
   const titleRef = useRef();
   // const [newActive, setNewActive] = useState(false);
   // const [confirm, setConfirm] = useState(false);
@@ -28,6 +28,11 @@ export default function NewCollection() {
     setPage(2);
   };
 
+  const handleDone = () => {
+    props.setLoadCollections(true);
+    setPage(0);
+  };
+
   const MultiPageForm = () => {
     switch (page) {
       case 0:
@@ -44,7 +49,13 @@ export default function NewCollection() {
           <div className='new-collection__container'>
             <form className='new-collection__form-container'>
               <label for='title'>Collection Title</label>
-              <input type='text' id='title' ref={titleRef} required />
+              <input
+                type='text'
+                id='title'
+                ref={titleRef}
+                required
+                style={{ marginBottom: "1em" }}
+              />
 
               <div className='new-collection__btn-panel'>
                 <button
@@ -72,18 +83,18 @@ export default function NewCollection() {
               <UploadForm collection={collectionName} />
               <ImageGrid collection={collectionName} />
               <div className='new-collection__btn-panel'>
-                <button
+                {/* <button
                   className='new-collection__start-btn'
-                  onClick={confirmTitle}
+                  onClick={cancelNewCollection}
                   type='submit'
                 >
                   OK
-                </button>
+                </button> */}
                 <button
                   className='new-collection__start-btn'
-                  onClick={cancelNewCollection}
+                  onClick={handleDone}
                 >
-                  Cancel
+                  Done
                 </button>
               </div>
             </div>
