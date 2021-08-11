@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
-import UploadForm from "./UploadForm";
-import ImageGrid from "./ImageGrid";
+import { useHistory } from "react-router-dom";
 import NavBar from "./NavBar";
 import NewCollection from "./NewCollection";
-import { projectStorage, projectFirestore, timestamp } from "../firebase";
+import { projectFirestore } from "../firebase";
 import CollectionTile from "./CollectionTile";
 
 export default function Dashboard() {
@@ -35,7 +33,7 @@ export default function Dashboard() {
       .get()
       .then((doc) => {
         if (doc.exists) {
-          console.log("Hello from dashboard: ", doc.data().collections);
+          // console.log("Hello from dashboard: ", doc.data().collections);
           const collectionArr = doc.data().collections.map((collection) => {
             return JSON.parse(collection);
           });
@@ -57,13 +55,7 @@ export default function Dashboard() {
         handleLogout={handleLogout}
       />
 
-      <NewCollection
-        // loadCollections={loadCollections}
-        setLoadCollections={setLoadCollections}
-      />
-      {/* <UploadForm /> */}
-      {/* <ImageGrid /> */}
-      {/* {JSON.stringify(collections)} */}
+      <NewCollection setLoadCollections={setLoadCollections} />
 
       {collections.map((collection) => {
         return (
@@ -71,11 +63,8 @@ export default function Dashboard() {
             title={collection.title}
             frontRef={collection.front}
             description={collection.description}
+            setLoadCollections={setLoadCollections}
           />
-          // <div>
-          //   <div>{collection.title}</div>
-          //   <div>{collection.front}</div>
-          // </div>
         );
       })}
     </div>

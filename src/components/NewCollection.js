@@ -5,8 +5,6 @@ import ImageGrid from "./ImageGrid";
 export default function NewCollection(props) {
   const titleRef = useRef();
   const descriptionRef = useRef();
-  // const [newActive, setNewActive] = useState(false);
-  // const [confirm, setConfirm] = useState(false);
   const [collectionName, setCollectionName] = useState("");
   const [descriptionText, setDescriptionText] = useState("");
   const [page, setPage] = useState(0);
