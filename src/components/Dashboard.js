@@ -5,6 +5,8 @@ import NavBar from "./NavBar";
 import NewCollection from "./NewCollection";
 import { projectFirestore } from "../firebase";
 import CollectionTile from "./CollectionTile";
+import { useDispatch } from "react-redux";
+import { setCollectionsModel } from "../actions";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
@@ -13,6 +15,7 @@ export default function Dashboard() {
   const { logout } = useAuth();
   const history = useHistory();
   const [loadCollections, setLoadCollections] = useState(false);
+  const dispatch = useDispatch();
 
   async function handleLogout() {
     setError("");
@@ -38,6 +41,8 @@ export default function Dashboard() {
             return JSON.parse(collection);
           });
           setCollections(collectionArr.reverse());
+
+          // setLoadCollections(true);
         }
       })
       .catch((err) => {
@@ -46,6 +51,12 @@ export default function Dashboard() {
 
     setLoadCollections(false);
   }, [loadCollections]);
+
+  useEffect(() => {
+    // redux
+    console.log("collections:", collections);
+    dispatch(setCollectionsModel(collections));
+  }, [collections]);
 
   return (
     <div className='app-body'>
