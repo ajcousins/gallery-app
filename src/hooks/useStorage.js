@@ -1,5 +1,4 @@
-import { storage } from "firebase";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { projectStorage, projectFirestore, timestamp } from "../firebase";
 
 // Saves image to storage and saves reference of image to firestore.
