@@ -40,6 +40,7 @@ export default function UploadForm(props) {
             file={file}
             setFile={setFile}
             collection={props.collection}
+            description={props.description}
           />
         )}
       </div>

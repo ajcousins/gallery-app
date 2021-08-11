@@ -70,6 +70,7 @@ export default function Dashboard() {
           <CollectionTile
             title={collection.title}
             frontRef={collection.front}
+            description={collection.description}
           />
           // <div>
           //   <div>{collection.title}</div>

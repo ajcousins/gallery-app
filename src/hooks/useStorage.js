@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { projectStorage, projectFirestore, timestamp } from "../firebase";
 
 // Saves image to storage and saves reference of image to firestore.
-const useStorage = (file, collection) => {
+const useStorage = (file, collection, description) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
@@ -30,12 +30,20 @@ const useStorage = (file, collection) => {
           } else {
             collectionArray = [
               ...doc.data().collections,
-              JSON.stringify({ title: collection, front: refString }),
+              JSON.stringify({
+                title: collection,
+                front: refString,
+                description: description,
+              }),
             ];
           }
         } else {
           collectionArray.push(
-            JSON.stringify({ title: collection, front: refString })
+            JSON.stringify({
+              title: collection,
+              front: refString,
+              description: description,
+            })
           );
         }
       })
@@ -70,7 +78,7 @@ const useStorage = (file, collection) => {
         setUrl(url);
       }
     );
-  }, [file, collection]);
+  }, [file, collection, description]);
 
   return { progress, url, error };
 };

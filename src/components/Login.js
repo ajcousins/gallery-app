@@ -38,7 +38,12 @@ export default function Login() {
           <label for='password'>Password</label>
           <input type='password' id='password' ref={passwordRef} required />
 
-          <button className='user-form__btn' type='submit' disabled={loading}>
+          <button
+            className='user-form__btn'
+            type='submit'
+            disabled={loading}
+            style={{ marginTop: "1em" }}
+          >
             Log In
           </button>
         </form>

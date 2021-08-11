@@ -4,7 +4,7 @@ import ImageGrid from "./ImageGrid";
 import UploadForm from "./UploadForm";
 import { ReactComponent as Pencil } from "../svg/pencil2.svg";
 
-export default function CollectionTile({ title, frontRef }) {
+export default function CollectionTile({ title, frontRef, description }) {
   const { docs } = useFirestore(title);
   const [expanded, setExpanded] = useState(false);
 
@@ -35,22 +35,13 @@ export default function CollectionTile({ title, frontRef }) {
             <div className='collection-tile__edit-btn'>
               <Pencil style={{ height: "20px", width: "20px" }} />
             </div>
-            <div>
-              Placeholder description text. Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-              nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-              occaecat cupidatat non proident, sunt in culpa qui officia
-              deserunt mollit anim id est laborum.
-            </div>
+            <div>{description}</div>
             <div className='collection-tile__edit-btn'>
               <Pencil style={{ height: "20px", width: "20px" }} />
             </div>
             <div className='collection-tile__btn-panel'>
               <button
-                className='new-collection__start-btn collection-tile__btn'
+                className='new-collection__start-btn collection-tile__btn btn-danger'
                 //   onClick={collectionViewHandler}
               >
                 Delete Collection
@@ -75,16 +66,7 @@ export default function CollectionTile({ title, frontRef }) {
           </div>
           <div className='collection-tile__info'>
             <h3 className='collection-tile__title'>{title} </h3>
-            <div>
-              Placeholder description text. Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-              nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-              occaecat cupidatat non proident, sunt in culpa qui officia
-              deserunt mollit anim id est laborum.
-            </div>
+            <div>{description}</div>
           </div>
         </div>
       )}

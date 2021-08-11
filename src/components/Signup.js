@@ -49,7 +49,12 @@ export default function Signup() {
           <label for='confirm'>Confirm Password</label>
           <input type='password' id='confirm' ref={confirmRef} required />
 
-          <button className='user-form__btn' type='submit' disabled={loading}>
+          <button
+            className='user-form__btn'
+            type='submit'
+            disabled={loading}
+            style={{ marginTop: "1em" }}
+          >
             Sign Up
           </button>
         </form>

@@ -1,8 +1,13 @@
 import React, { useEffect } from "react";
 import useStorage from "../hooks/useStorage";
 
-export default function ProgressBar({ file, setFile, collection }) {
-  const { url, progress } = useStorage(file, collection);
+export default function ProgressBar({
+  file,
+  setFile,
+  collection,
+  description,
+}) {
+  const { url, progress } = useStorage(file, collection, description);
 
   useEffect(() => {
     if (url) {
