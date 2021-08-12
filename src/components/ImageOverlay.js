@@ -3,8 +3,9 @@ import { ReactComponent as Radio } from "../svg/radio.svg";
 import { ReactComponent as RadioFilled } from "../svg/radio-filled.svg";
 import Bin from "../svg/bin.js";
 import { useSelector, useDispatch } from "react-redux";
+import { projectStorage, projectFirestore } from "../firebase";
 
-export default function ImageOverlay({ refString }) {
+export default function ImageOverlay({ collectionTitle, refString, id }) {
   const collectionsModel = useSelector((state) => state.collectionsModel);
   const [isFront, setIsFront] = useState(false);
 
@@ -12,18 +13,30 @@ export default function ImageOverlay({ refString }) {
     console.log("fill radio");
   };
 
-  const binHandler = () => {
-    console.log("bin handler");
+  const deleteImageHandler = () => {
+    console.log("bin handler:", collectionTitle, refString, id);
+    // Delete actual image from file storage
+    const storageRef = projectStorage.ref(refString);
+    storageRef
+      .delete()
+      .then(() => {
+        // Delete from FireStore database
+        projectFirestore
+          .collection(collectionTitle)
+          .doc(id)
+          .delete()
+          .then(() => {
+            console.log("Document deleted");
+          });
+      })
+      .catch((err) => {
+        console.error("Error removing document: ", err);
+      });
   };
 
+  // Is this image the 'front' of the collection?? If so, set state of this component.
   useEffect(() => {
-    console.log(collectionsModel);
-    if (
-      collectionsModel.some((collection) => {
-        return collection.front === refString;
-      })
-    ) {
-      console.log("Is front!");
+    if (collectionsModel.some((collection) => collection.front === refString)) {
       setIsFront(true);
     }
   }, [collectionsModel]);
@@ -38,7 +51,7 @@ export default function ImageOverlay({ refString }) {
       ) : (
         <>
           <Radio onClick={radioFillHandler} />
-          <div onClick={binHandler}>
+          <div onClick={deleteImageHandler}>
             <Bin />
           </div>
         </>
