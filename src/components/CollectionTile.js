@@ -18,7 +18,6 @@ export default function CollectionTile({
   const [descriptionEditMode, setDescriptionEditMode] = useState(false);
   const [descriptionVal, setDescriptionVal] = useState("");
   const collectionsModel = useSelector((state) => state.collectionsModel);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setDescriptionVal(description);
@@ -38,7 +37,10 @@ export default function CollectionTile({
       setExpanded(false);
       setDescriptionVal(description);
       setDescriptionEditMode(false);
-    } else setExpanded(true);
+    } else {
+      setLoadCollections(true);
+      setExpanded(true);
+    }
   };
 
   const editDescription = () => {
@@ -52,30 +54,29 @@ export default function CollectionTile({
 
   const collectionSaveEdits = (e) => {
     collectionViewHandler(e);
+
+    //// 1. Make copy of global collectionsModel
+    const collectionsModelCopy = [...collectionsModel];
+
+    //// 2. Insert updated description
+    const index = collectionsModelCopy.findIndex(
+      (collection) => collection.title === title
+    );
+    collectionsModelCopy[index].description = descriptionVal;
+
+    //// 3. Stringify each array obj
+    const collectionsStringified = collectionsModelCopy.map((collection) =>
+      JSON.stringify(collection)
+    );
+
+    //// 4. Update database
     const register = projectFirestore.collection("00_admin").doc("register");
     register
-      .get()
-      .then((doc) => {
-        const wholeArray = [...doc.data().collections];
-        const thisTileIndex = doc
-          .data()
-          .collections.findIndex(
-            (collection) => JSON.parse(collection).title === title
-          );
+      .update({ collections: collectionsStringified.reverse() })
+      .then(setLoadCollections(true));
 
-        // Create updated array element
-        const thisArrayElement = JSON.parse(wholeArray[thisTileIndex]);
-        thisArrayElement.description = descriptionVal;
-
-        wholeArray[thisTileIndex] = JSON.stringify(thisArrayElement);
-        register.update({ collections: wholeArray });
-        // refresh collections/ fetch from database
-        setLoadCollections(true);
-      })
-
-      .catch((err) => {
-        console.log("Error: ", err);
-      });
+    //// 5. Refresh state --> setLoadCollections(true);
+    setLoadCollections(true);
   };
 
   const deleteCollectionHandler = () => {

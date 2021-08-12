@@ -41,7 +41,7 @@ export default function Dashboard() {
             return JSON.parse(collection);
           });
           setCollections(collectionArr.reverse());
-
+          console.log("from useEffect: ", collections);
           // setLoadCollections(true);
         }
       })
@@ -49,13 +49,14 @@ export default function Dashboard() {
         console.log("Error: ", err);
       });
 
-    setLoadCollections(false);
+    // setLoadCollections(false);
   }, [loadCollections]);
 
   useEffect(() => {
     // redux
     console.log("collections:", collections);
     dispatch(setCollectionsModel(collections));
+    // setLoadCollections(true);
   }, [collections]);
 
   return (
