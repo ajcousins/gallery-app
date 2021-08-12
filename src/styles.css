@@ -3,10 +3,17 @@
   color: #262626;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  color: #222424;
 }
 
-body {
-  background-color: #cfcfcb;
+.back-of-house-background {
+  background-color: gainsboro;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 input,
@@ -16,12 +23,12 @@ textarea {
   -webkit-box-shadow: inset 3px 4px 0 #00000036;
           box-shadow: inset 3px 4px 0 #00000036;
   background: #00000012;
-  border: 1px solid black;
+  border: 1px solid #222424;
 }
 
 input:focus,
 textarea:focus {
-  outline: 1px solid black;
+  outline: 1px solid #222424;
 }
 
 textarea {
@@ -30,7 +37,7 @@ textarea {
 
 button {
   background-color: #00000012;
-  border: 1px solid black;
+  border: 1px solid #222424;
   padding: 0.7em 1em;
   cursor: pointer;
 }
@@ -40,12 +47,16 @@ button:hover {
 }
 
 .svg-btn {
-  fill: #999999;
+  fill: #686767;
   cursor: pointer;
 }
 
 .svg-btn:hover {
   fill: black;
+}
+
+.svg-icon-disabled {
+  stroke: #ffffff55;
 }
 
 .btn-danger:hover {
@@ -84,7 +95,7 @@ button:hover {
 }
 
 .user-form__btn:focus {
-  outline: 1px solid black;
+  outline: 1px solid #222424;
 }
 
 .user-form__btn:focus {
@@ -166,6 +177,10 @@ button:hover {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   padding: 2em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .new-collection__btn-panel {
@@ -177,12 +192,13 @@ button:hover {
 }
 
 .new-collection__container {
+  background-color: #ffffff28;
   width: 100%;
   -webkit-box-shadow: 4px 5px 0 #00000036;
           box-shadow: 4px 5px 0 #00000036;
-  border: 2px solid black;
+  border: 2px solid #222424;
   padding: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 3em;
 }
 
 .new-collection__form-container {
@@ -208,7 +224,7 @@ button:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border: 1px solid black;
+  border: 1px solid #222424;
   margin-bottom: 1em;
   padding: 0.5em 1em 0.5em 0.5em;
   cursor: pointer;
@@ -225,7 +241,7 @@ button:hover {
       grid-template-columns: 1fr 1fr;
   -webkit-column-gap: 1em;
           column-gap: 1em;
-  border: 2px solid black;
+  border: 2px solid #222424;
   margin-bottom: 1em;
   padding: 0.5em;
 }

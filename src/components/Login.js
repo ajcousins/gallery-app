@@ -28,15 +28,28 @@ export default function Login() {
 
   return (
     <div>
+      <div className='back-of-house-background' />
       <div className='small-container'>
         <h2>Log In</h2>
         <form className='user-form' onSubmit={handleSubmit}>
           {error && <div className='error-msg'>{error}</div>}
           <label for='email'>Email</label>
-          <input type='email' id='email' ref={emailRef} required />
+          <input
+            type='email'
+            id='email'
+            ref={emailRef}
+            required
+            style={{ marginBottom: "1em" }}
+          />
 
           <label for='password'>Password</label>
-          <input type='password' id='password' ref={passwordRef} required />
+          <input
+            type='password'
+            id='password'
+            ref={passwordRef}
+            required
+            style={{ marginBottom: "1em" }}
+          />
 
           <button
             className='user-form__btn'
@@ -50,7 +63,6 @@ export default function Login() {
 
         <Link to='/signup'>Sign Up</Link>
       </div>
-      {JSON.stringify(currentUser)}
     </div>
   );
 }

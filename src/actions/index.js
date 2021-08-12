@@ -12,3 +12,10 @@ export const markFront = (collectionTitle, refString) => {
     payload: { collectionTitle, refString },
   };
 };
+
+export const setNewCollection = (title) => {
+  return {
+    type: "SET_NEW_COLLECTION",
+    payload: title,
+  };
+};

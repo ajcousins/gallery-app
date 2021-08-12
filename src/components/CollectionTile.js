@@ -13,6 +13,7 @@ export default function CollectionTile({ title, frontRef, description }) {
   const [descriptionEditMode, setDescriptionEditMode] = useState(false);
   const [descriptionVal, setDescriptionVal] = useState("");
   const collectionsModel = useSelector((state) => state.collectionsModel);
+  const newCollection = useSelector((state) => state.newCollection);
 
   useEffect(() => {
     setDescriptionVal(description);
@@ -108,13 +109,34 @@ export default function CollectionTile({ title, frontRef, description }) {
     });
   };
 
+  const CollapsedTile = (props) => {
+    if (props.newCollection === title) {
+      return null;
+    } else
+      return (
+        <div className='collection-tile' onClick={collectionViewHandler}>
+          <div className='collection-tile__img-wrapper'>
+            <img
+              className='collection-tile__img'
+              src={getFrontUrl(frontRef)}
+              alt={frontRef}
+            />
+          </div>
+          <div className='collection-tile__info'>
+            <h3 className='collection-tile__title'>{title} </h3>
+            <div>{description}</div>
+          </div>
+        </div>
+      );
+  };
+
   return (
     <div>
       {expanded ? (
         <div className='collection-tile__expanded'>
           <div className='collection-tile__expanded__left'>
             <ImageGrid collection={title} />
-            <UploadForm collection={title} />
+            <UploadForm collection={title} style={{ marginBottom: "0" }} />
           </div>
           <div className='collection-tile__expanded__right'>
             <h2 className='collection-tile__title'>{title} </h2>
@@ -144,6 +166,7 @@ export default function CollectionTile({ title, frontRef, description }) {
               <button
                 className='new-collection__start-btn collection-tile__btn btn-danger'
                 onClick={deleteCollectionHandler}
+                style={{ marginLeft: "0", marginRight: "auto" }}
               >
                 Delete Collection
               </button>
@@ -163,19 +186,7 @@ export default function CollectionTile({ title, frontRef, description }) {
           </div>
         </div>
       ) : (
-        <div className='collection-tile' onClick={collectionViewHandler}>
-          <div className='collection-tile__img-wrapper'>
-            <img
-              className='collection-tile__img'
-              src={getFrontUrl(frontRef)}
-              alt={frontRef}
-            />
-          </div>
-          <div className='collection-tile__info'>
-            <h3 className='collection-tile__title'>{title} </h3>
-            <div>{description}</div>
-          </div>
-        </div>
+        <CollapsedTile newCollection={newCollection} />
       )}
     </div>
   );

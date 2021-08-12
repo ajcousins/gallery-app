@@ -49,6 +49,7 @@ export default function Dashboard() {
 
   return (
     <div className='app-body'>
+      <div className='back-of-house-background' />
       <NavBar
         error={error}
         currentUser={currentUser}

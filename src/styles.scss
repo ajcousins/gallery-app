@@ -1,17 +1,29 @@
-$subtle-icon: #999999;
+$subtle-icon: #686767;
 $btn-shade: #00000012;
 $shadow: #00000036;
 $danger: #ff6b6b;
+$boh-background: rgb(220, 220, 220);
+$boh-text: #222424;
 
 * {
   //   font-family: sans-serif;
   font-family: "Share Tech Mono", monospace;
   color: rgb(38, 38, 38);
   box-sizing: border-box;
+  color: $boh-text;
 }
 
 body {
-  background-color: #cfcfcb;
+}
+
+.back-of-house-background {
+  background-color: $boh-background;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 input,
@@ -20,10 +32,10 @@ textarea {
   padding: 1em 0.5em;
   box-shadow: inset 3px 4px 0 $shadow;
   background: $btn-shade;
-  border: 1px solid black;
+  border: 1px solid $boh-text;
 
   &:focus {
-    outline: 1px solid black;
+    outline: 1px solid $boh-text;
   }
 }
 
@@ -33,7 +45,7 @@ textarea {
 
 button {
   background-color: $btn-shade;
-  border: 1px solid black;
+  border: 1px solid $boh-text;
   padding: 0.7em 1em;
 
   cursor: pointer;
@@ -85,7 +97,7 @@ button {
     // border-radius: 0;
 
     &:focus {
-      outline: 1px solid black;
+      outline: 1px solid $boh-text;
     }
 
     &:focus {
@@ -172,10 +184,10 @@ button {
   }
 
   &__container {
-    background-color: #ffffff99;
+    background-color: #ffffff28;
     width: 100%;
     box-shadow: 4px 5px 0 $shadow;
-    border: 2px solid black;
+    border: 2px solid $boh-text;
     padding: 1em;
     margin-bottom: 3em;
   }
@@ -197,7 +209,7 @@ button {
 
 .collection-tile {
   display: flex;
-  border: 1px solid black;
+  border: 1px solid $boh-text;
   margin-bottom: 1em;
   padding: 0.5em 1em 0.5em 0.5em;
   cursor: pointer;
@@ -210,7 +222,7 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 1em;
-    border: 2px solid black;
+    border: 2px solid $boh-text;
     margin-bottom: 1em;
     padding: 0.5em;
 

@@ -25,13 +25,11 @@ export default function UploadForm(props) {
     }
   }
 
+  const inputStyle = props.style ? props.style : { marginBottom: "1em" };
+
   return (
     <form>
-      <input
-        type='file'
-        onChange={changeHandler}
-        style={{ marginBottom: "1em" }}
-      />
+      <input type='file' onChange={changeHandler} style={inputStyle} />
       <div>
         {error && <div className='error-msg'>{error}</div>}
         {file && <div>{file.name}</div>}

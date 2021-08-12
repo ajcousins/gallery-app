@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import UploadForm from "./UploadForm";
 import ImageGrid from "./ImageGrid";
+import { useSelector, useDispatch } from "react-redux";
+import { setNewCollection } from "../actions";
 
 export default function NewCollection(props) {
   const titleRef = useRef();
@@ -8,6 +10,7 @@ export default function NewCollection(props) {
   const [collectionName, setCollectionName] = useState("");
   const [descriptionText, setDescriptionText] = useState("");
   const [page, setPage] = useState(0);
+  const dispatch = useDispatch();
 
   const startNewCollection = () => {
     console.log("Start new collection");
@@ -22,6 +25,8 @@ export default function NewCollection(props) {
     e.preventDefault();
     if (!titleRef.current.value) return;
     setCollectionName(titleRef.current.value);
+    // set same name in global state
+    dispatch(setNewCollection(titleRef.current.value));
     setPage(2);
   };
 
@@ -33,6 +38,7 @@ export default function NewCollection(props) {
   };
 
   const handleDone = () => {
+    dispatch(setNewCollection(null));
     setPage(0);
   };
 
