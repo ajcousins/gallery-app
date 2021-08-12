@@ -5,14 +5,9 @@ import UploadForm from "./UploadForm";
 import { ReactComponent as Pencil } from "../svg/pencil2.svg";
 import { projectStorage, projectFirestore } from "../firebase";
 import deleteImageHandler from "../utils/deleteImageHandler";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-export default function CollectionTile({
-  title,
-  frontRef,
-  description,
-  setLoadCollections,
-}) {
+export default function CollectionTile({ title, frontRef, description }) {
   const { docs } = useFirestore(title);
   const [expanded, setExpanded] = useState(false);
   const [descriptionEditMode, setDescriptionEditMode] = useState(false);
@@ -38,7 +33,6 @@ export default function CollectionTile({
       setDescriptionVal(description);
       setDescriptionEditMode(false);
     } else {
-      setLoadCollections(true);
       setExpanded(true);
     }
   };
@@ -71,12 +65,7 @@ export default function CollectionTile({
 
     //// 4. Update database
     const register = projectFirestore.collection("00_admin").doc("register");
-    register
-      .update({ collections: collectionsStringified.reverse() })
-      .then(setLoadCollections(true));
-
-    //// 5. Refresh state --> setLoadCollections(true);
-    setLoadCollections(true);
+    register.update({ collections: collectionsStringified.reverse() });
   };
 
   const deleteCollectionHandler = () => {
@@ -96,13 +85,9 @@ export default function CollectionTile({
             id: doc.id,
           });
         });
-        // Refresh state
-        setLoadCollections(true);
       })
       .catch((err) => {
         console.log("Error: ", err);
-        // Refresh state
-        setLoadCollections(true);
       });
 
     // Delete from database and 00_admin document.
@@ -120,11 +105,7 @@ export default function CollectionTile({
         .collection("00_admin")
         .doc("register")
         .set({ collections: wholeArray }, { merge: true });
-      // Refresh state
-      setLoadCollections(true);
     });
-    // Refresh state
-    setLoadCollections(true);
   };
 
   return (

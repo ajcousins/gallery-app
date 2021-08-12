@@ -172,11 +172,12 @@ button {
   }
 
   &__container {
+    background-color: #ffffff99;
     width: 100%;
     box-shadow: 4px 5px 0 $shadow;
     border: 2px solid black;
     padding: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 3em;
   }
 
   &__form-container {

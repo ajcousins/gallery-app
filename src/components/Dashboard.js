@@ -14,7 +14,6 @@ export default function Dashboard() {
   const [collections, setCollections] = useState([]);
   const { logout } = useAuth();
   const history = useHistory();
-  const [loadCollections, setLoadCollections] = useState(false);
   const dispatch = useDispatch();
 
   async function handleLogout() {
@@ -28,36 +27,25 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
-    // use get on database to get single document with collections
-    if (setLoadCollections(false)) return;
-
-    const register = projectFirestore.collection("00_admin").doc("register");
-    register
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          // console.log("Hello from dashboard: ", doc.data().collections);
-          const collectionArr = doc.data().collections.map((collection) => {
-            return JSON.parse(collection);
-          });
-          setCollections(collectionArr.reverse());
-          console.log("from useEffect: ", collections);
-          // setLoadCollections(true);
-        }
-      })
-      .catch((err) => {
-        console.log("Error: ", err);
-      });
-
-    // setLoadCollections(false);
-  }, [loadCollections]);
+    // set redux global state
+    dispatch(setCollectionsModel(collections));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [collections]);
 
   useEffect(() => {
-    // redux
-    console.log("collections:", collections);
-    dispatch(setCollectionsModel(collections));
-    // setLoadCollections(true);
-  }, [collections]);
+    const unsubscribe = projectFirestore
+      .collection("00_admin")
+      .doc("register")
+      .onSnapshot((snap) => {
+        console.log(snap.data());
+        const collectionArr = snap.data().collections.map((collection) => {
+          return JSON.parse(collection);
+        });
+        setCollections(collectionArr.reverse());
+      });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className='app-body'>
@@ -67,7 +55,7 @@ export default function Dashboard() {
         handleLogout={handleLogout}
       />
 
-      <NewCollection setLoadCollections={setLoadCollections} />
+      <NewCollection />
 
       {collections.map((collection) => {
         return (
@@ -75,7 +63,6 @@ export default function Dashboard() {
             title={collection.title}
             frontRef={collection.front}
             description={collection.description}
-            setLoadCollections={setLoadCollections}
           />
         );
       })}

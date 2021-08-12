@@ -33,7 +33,6 @@ export default function NewCollection(props) {
   };
 
   const handleDone = () => {
-    props.setLoadCollections(true);
     setPage(0);
   };
 
@@ -113,7 +112,7 @@ export default function NewCollection(props) {
                 collection={collectionName}
                 description={descriptionText}
               />
-              <ImageGrid collection={collectionName} />
+              <ImageGrid collection={collectionName} noOverlay='true' />
               <div className='new-collection__btn-panel'>
                 <button
                   className='new-collection__start-btn'

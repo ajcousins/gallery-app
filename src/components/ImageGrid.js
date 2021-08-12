@@ -12,11 +12,13 @@ export default function ImageGrid(props) {
         docs.map((doc) => {
           return (
             <div className='img-grid__wrap' key={doc.id}>
-              <ImageOverlay
-                refString={doc.refString}
-                id={doc.id}
-                collectionTitle={props.collection}
-              />
+              {props.noOverlay ? null : (
+                <ImageOverlay
+                  refString={doc.refString}
+                  id={doc.id}
+                  collectionTitle={props.collection}
+                />
+              )}
               <img src={doc.url} alt='uploaded-pic' />
             </div>
           );
