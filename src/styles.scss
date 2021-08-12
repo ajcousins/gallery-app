@@ -50,6 +50,10 @@ button {
   }
 }
 
+.svg-icon-disabled {
+  stroke: #ffffff55;
+}
+
 .btn-danger:hover {
   background-color: $danger;
   color: white;
@@ -156,6 +160,7 @@ button {
   align-items: center;
   justify-content: space-evenly;
   padding: 2em;
+  user-select: none;
 }
 
 .new-collection {

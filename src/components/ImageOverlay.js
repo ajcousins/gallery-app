@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ReactComponent as Radio } from "../svg/radio.svg";
 import { ReactComponent as RadioFilled } from "../svg/radio-filled.svg";
-import { ReactComponent as Bin } from "../svg/bin.svg";
+import Bin from "../svg/bin.js";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function ImageOverlay({ refString }) {
@@ -17,7 +17,6 @@ export default function ImageOverlay({ refString }) {
   };
 
   useEffect(() => {
-    console.log("Hello?");
     console.log(collectionsModel);
     if (
       collectionsModel.some((collection) => {
@@ -31,13 +30,19 @@ export default function ImageOverlay({ refString }) {
 
   return (
     <div className='image-overlay'>
-      {/* {refString} */}
       {isFront ? (
-        <RadioFilled onClick={radioFillHandler} />
+        <>
+          <RadioFilled />
+          <Bin color={"#ffffff55"} />
+        </>
       ) : (
-        <Radio onClick={radioFillHandler} />
+        <>
+          <Radio onClick={radioFillHandler} />
+          <div onClick={binHandler}>
+            <Bin />
+          </div>
+        </>
       )}
-      <Bin onClick={binHandler} />
     </div>
   );
 }
