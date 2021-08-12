@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import UploadForm from "./UploadForm";
 import ImageGrid from "./ImageGrid";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setNewCollection } from "../actions";
 
 export default function NewCollection(props) {
