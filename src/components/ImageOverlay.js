@@ -5,21 +5,24 @@ import Bin from "../svg/bin.js";
 import { useSelector, useDispatch } from "react-redux";
 import { projectStorage, projectFirestore } from "../firebase";
 import deleteImageHandler from "../utils/deleteImageHandler";
+import { markFront } from "../actions";
 
 export default function ImageOverlay({ collectionTitle, refString, id }) {
   const collectionsModel = useSelector((state) => state.collectionsModel);
   const [isFront, setIsFront] = useState(false);
+  const dispatch = useDispatch();
 
-  const radioFillHandler = () => {
-    console.log("fill radio");
+  const markAsFront = () => {
+    console.log("new front image");
+    dispatch(markFront(collectionTitle, refString));
   };
 
   // Is this image the 'front' of the collection?? If so, set state of this component.
   useEffect(() => {
     if (collectionsModel.some((collection) => collection.front === refString)) {
       setIsFront(true);
-    }
-  }, [collectionsModel]);
+    } else setIsFront(false);
+  }, [collectionsModel, refString]);
 
   return (
     <div className='image-overlay'>
@@ -30,7 +33,7 @@ export default function ImageOverlay({ collectionTitle, refString, id }) {
         </>
       ) : (
         <>
-          <Radio onClick={radioFillHandler} />
+          <Radio onClick={markAsFront} />
           <div
             onClick={() =>
               deleteImageHandler({

@@ -5,6 +5,7 @@ import UploadForm from "./UploadForm";
 import { ReactComponent as Pencil } from "../svg/pencil2.svg";
 import { projectStorage, projectFirestore } from "../firebase";
 import deleteImageHandler from "../utils/deleteImageHandler";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function CollectionTile({
   title,
@@ -16,6 +17,8 @@ export default function CollectionTile({
   const [expanded, setExpanded] = useState(false);
   const [descriptionEditMode, setDescriptionEditMode] = useState(false);
   const [descriptionVal, setDescriptionVal] = useState("");
+  const collectionsModel = useSelector((state) => state.collectionsModel);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setDescriptionVal(description);
@@ -66,6 +69,7 @@ export default function CollectionTile({
 
         wholeArray[thisTileIndex] = JSON.stringify(thisArrayElement);
         register.update({ collections: wholeArray });
+        // refresh collections/ fetch from database
         setLoadCollections(true);
       })
 
