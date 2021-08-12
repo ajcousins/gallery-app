@@ -4,6 +4,7 @@ import { ReactComponent as RadioFilled } from "../svg/radio-filled.svg";
 import Bin from "../svg/bin.js";
 import { useSelector, useDispatch } from "react-redux";
 import { projectStorage, projectFirestore } from "../firebase";
+import deleteImageHandler from "../utils/deleteImageHandler";
 
 export default function ImageOverlay({ collectionTitle, refString, id }) {
   const collectionsModel = useSelector((state) => state.collectionsModel);
@@ -11,27 +12,6 @@ export default function ImageOverlay({ collectionTitle, refString, id }) {
 
   const radioFillHandler = () => {
     console.log("fill radio");
-  };
-
-  const deleteImageHandler = () => {
-    console.log("bin handler:", collectionTitle, refString, id);
-    // Delete actual image from file storage
-    const storageRef = projectStorage.ref(refString);
-    storageRef
-      .delete()
-      .then(() => {
-        // Delete from FireStore database
-        projectFirestore
-          .collection(collectionTitle)
-          .doc(id)
-          .delete()
-          .then(() => {
-            console.log("Document deleted");
-          });
-      })
-      .catch((err) => {
-        console.error("Error removing document: ", err);
-      });
   };
 
   // Is this image the 'front' of the collection?? If so, set state of this component.
@@ -51,7 +31,17 @@ export default function ImageOverlay({ collectionTitle, refString, id }) {
       ) : (
         <>
           <Radio onClick={radioFillHandler} />
-          <div onClick={deleteImageHandler}>
+          <div
+            onClick={() =>
+              deleteImageHandler({
+                projectStorage,
+                projectFirestore,
+                collectionTitle,
+                refString,
+                id,
+              })
+            }
+          >
             <Bin />
           </div>
         </>

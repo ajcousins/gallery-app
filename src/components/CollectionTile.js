@@ -3,7 +3,8 @@ import useFirestore from "../hooks/useFirestore";
 import ImageGrid from "./ImageGrid";
 import UploadForm from "./UploadForm";
 import { ReactComponent as Pencil } from "../svg/pencil2.svg";
-import { projectFirestore } from "../firebase";
+import { projectStorage, projectFirestore } from "../firebase";
+import deleteImageHandler from "../utils/deleteImageHandler";
 
 export default function CollectionTile({
   title,
@@ -74,7 +75,32 @@ export default function CollectionTile({
   };
 
   const deleteCollectionHandler = () => {
-    console.log("Delete collection handler");
+    setExpanded(false);
+
+    // Delete actual images from storage.
+    projectFirestore
+      .collection(title)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          deleteImageHandler({
+            projectStorage,
+            projectFirestore,
+            collectionTitle: title,
+            refString: doc.data().refString,
+            id: doc.id,
+          });
+        });
+        // Refresh state
+        setLoadCollections(true);
+      })
+      .catch((err) => {
+        console.log("Error: ", err);
+        // Refresh state
+        setLoadCollections(true);
+      });
+
+    // Delete from database and 00_admin document.
     const register = projectFirestore.collection("00_admin").doc("register");
     register.get().then((doc) => {
       const wholeArray = [...doc.data().collections];
@@ -83,16 +109,17 @@ export default function CollectionTile({
         .collections.findIndex(
           (collection) => JSON.parse(collection).title === title
         );
-      console.log("Whole array: ", wholeArray, "thisIndex: ", thisTileIndex);
+      // Delete the collection entry in firestore: 00_admin/register
+      wholeArray.splice(thisTileIndex, 1);
+      projectFirestore
+        .collection("00_admin")
+        .doc("register")
+        .set({ collections: wholeArray }, { merge: true });
+      // Refresh state
+      setLoadCollections(true);
     });
-
-    // Get references to all images in collection.
-
-    // Delete those images in firestore.
-
-    // Delete the collection entry in firestore: 00_admin/register
-
-    // Delete the collection in firestore
+    // Refresh state
+    setLoadCollections(true);
   };
 
   return (
