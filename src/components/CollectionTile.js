@@ -3,6 +3,7 @@ import useFirestore from "../hooks/useFirestore";
 import ImageGrid from "./ImageGrid";
 import UploadForm from "./UploadForm";
 import { ReactComponent as Pencil } from "../svg/pencil2.svg";
+import { ReactComponent as ExpandSymbol } from "../svg/expand.svg";
 import { projectStorage, projectFirestore } from "../firebase";
 import deleteImageHandler from "../utils/deleteImageHandler";
 import { useSelector } from "react-redux";
@@ -114,7 +115,7 @@ export default function CollectionTile({ title, frontRef, description }) {
       return null;
     } else
       return (
-        <div className='collection-tile' onClick={collectionViewHandler}>
+        <div className='collection-tile'>
           <div className='collection-tile__img-wrapper'>
             <img
               className='collection-tile__img'
@@ -125,6 +126,12 @@ export default function CollectionTile({ title, frontRef, description }) {
           <div className='collection-tile__info'>
             <h3 className='collection-tile__title'>{title} </h3>
             <div>{description}</div>
+          </div>
+          <div
+            className='collection-tile__expand-btn'
+            onClick={collectionViewHandler}
+          >
+            <ExpandSymbol />
           </div>
         </div>
       );

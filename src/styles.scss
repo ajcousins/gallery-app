@@ -1,13 +1,17 @@
 $subtle-icon: #686767;
 $btn-shade: #00000012;
 $shadow: #00000036;
-$danger: #ff6b6b;
-$boh-background: rgb(220, 220, 220);
+$danger: #e90052;
+$boh-background: rgb(243, 243, 243);
 $boh-text: #222424;
+$fluorescent: #00ff87;
+$fluorescent-hover: #00df77;
+$edge: rgb(182, 182, 182);
+$highlight: #ffe65b;
 
 * {
   //   font-family: sans-serif;
-  font-family: "Share Tech Mono", monospace;
+  font-family: "Roboto", sans-serif;
   color: rgb(38, 38, 38);
   box-sizing: border-box;
   color: $boh-text;
@@ -15,6 +19,14 @@ $boh-text: #222424;
 
 // body {
 // }
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
 
 .back-of-house-background {
   background-color: $boh-background;
@@ -32,10 +44,10 @@ textarea {
   padding: 1em 0.5em;
   box-shadow: inset 3px 4px 0 $shadow;
   background: $btn-shade;
-  border: 1px solid $boh-text;
+  border: 1px solid $edge;
 
   &:focus {
-    outline: 1px solid $boh-text;
+    outline: 1px solid $edge;
   }
 }
 
@@ -44,13 +56,15 @@ textarea {
 }
 
 button {
-  background-color: $btn-shade;
-  border: 1px solid $boh-text;
+  background-color: $fluorescent;
+  // border: 1px solid $boh-text;
+  border: none;
   padding: 0.7em 1em;
 
   cursor: pointer;
   &:hover {
-    background-color: rgba(89, 89, 89, 0.233);
+    // background-color: rgba(89, 89, 89, 0.233);
+    background-color: $fluorescent-hover;
   }
 }
 
@@ -78,7 +92,8 @@ button {
 
 .app-body {
   min-width: 350px;
-  margin: 0 5em;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .user-form {
@@ -135,7 +150,7 @@ button {
 // }
 
 .progress-bar {
-  background-color: white;
+  background-color: $highlight;
   padding: 0.5em 0;
   margin-bottom: 1em;
 }
@@ -187,7 +202,7 @@ button {
     background-color: #ffffff28;
     width: 100%;
     box-shadow: 4px 5px 0 $shadow;
-    border: 2px solid $boh-text;
+    border: 2px solid $edge;
     padding: 1em;
     margin-bottom: 3em;
   }
@@ -209,22 +224,24 @@ button {
 
 .collection-tile {
   display: flex;
-  border: 1px solid $boh-text;
-  margin-bottom: 1em;
-  padding: 0.5em 1em 0.5em 0.5em;
-  cursor: pointer;
+  border-bottom: 1px solid $edge;
 
-  &:hover {
-    background-color: $btn-shade;
-  }
+  margin-bottom: 1em;
+  padding: 0.5em 1em 1.5em 0.5em;
+
+  // &:hover {
+  //   background-color: $btn-shade;
+  // }
 
   &__expanded {
+    // background-color: white;
+    box-shadow: 4px 5px 0 $shadow;
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 1em;
-    border: 2px solid $boh-text;
+    border: 2px solid $edge;
     margin-bottom: 1em;
-    padding: 0.5em;
+    padding: 1em;
 
     // &__left {
     // }
@@ -270,6 +287,12 @@ button {
   &__info {
     margin-left: 2em;
     margin-bottom: 2em;
+  }
+
+  &__expand-btn {
+    margin-left: auto;
+    margin-right: 0;
+    cursor: pointer;
   }
 
   &__title {
