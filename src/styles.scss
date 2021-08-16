@@ -51,19 +51,34 @@ textarea {
   }
 }
 
+input[type="file"] {
+  display: none;
+}
+
 textarea {
   resize: vertical;
 }
 
 button {
   background-color: $fluorescent;
-  // border: 1px solid $boh-text;
   border: none;
   padding: 0.7em 1em;
-
   cursor: pointer;
+  font-size: 0.9rem;
   &:hover {
-    // background-color: rgba(89, 89, 89, 0.233);
+    background-color: $fluorescent-hover;
+  }
+}
+
+.faux-btn {
+  background-color: $fluorescent;
+  width: 10em;
+  text-align: center;
+  border: none;
+  padding: 0.7em 1em;
+  cursor: pointer;
+  font-size: 0.9rem;
+  &:hover {
     background-color: $fluorescent-hover;
   }
 }
