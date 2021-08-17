@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ReactComponent as Exit } from "../svg/exit-white.svg";
+import { ReactComponent as Left } from "../svg/left-white.svg";
+import { ReactComponent as Right } from "../svg/right-white.svg";
+import BottomPanel from "./BottomPanel";
 
 export default function ImageExpand({ expandHandler, docs, front }) {
   const [imgArray, setImgArray] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     // sort docs array so that front image is at start of array
@@ -21,6 +25,26 @@ export default function ImageExpand({ expandHandler, docs, front }) {
     console.log(imgArray);
   }, [imgArray]);
 
+  useEffect(() => {
+    console.log(`${current + 1} of ${imgArray.length}`);
+  }, [current, imgArray]);
+
+  const nextHandler = () => {
+    if (current === imgArray.length - 1) {
+      setCurrent(0);
+    } else {
+      setCurrent(current + 1);
+    }
+  };
+
+  const prevHandler = () => {
+    if (current === 0) {
+      setCurrent(imgArray.length - 1);
+    } else {
+      setCurrent(current - 1);
+    }
+  };
+
   return (
     <div className='img-expand-wrapper-front'>
       <div className='img-expand-wrapper-front__left-container'>
@@ -30,11 +54,32 @@ export default function ImageExpand({ expandHandler, docs, front }) {
         >
           <Exit />
         </div>
+        {imgArray.length > 1 ? (
+          <div
+            className='img-expand-wrapper-front__left-symbol'
+            onClick={prevHandler}
+          >
+            <Left />
+          </div>
+        ) : null}
+        {imgArray.length > 1 ? (
+          <div
+            className='img-expand-wrapper-front__right-symbol'
+            onClick={nextHandler}
+          >
+            <Right />
+          </div>
+        ) : null}
+        {imgArray.length > 1 ? (
+          <div className='img-expand-wrapper-front__bottom-panel'>
+            <BottomPanel current={current} length={imgArray.length} />
+          </div>
+        ) : null}
         <div className='img-expand-wrapper-front__img-container'>
           {loaded && (
             <img
               className='img-expand-wrapper-front__img'
-              src={imgArray[0].url}
+              src={imgArray[current].url}
               alt={front}
             />
           )}
