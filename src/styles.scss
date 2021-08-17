@@ -320,8 +320,9 @@ button {
 // --- FRONT OF HOUSE --- //
 
 .nav-bar-front {
-  // background-color: yellow;
-  margin: 1em 3em;
+  width: 100em;
+  margin: 1em auto;
+  padding: 0 0.2em;
   display: flex;
   align-items: flex-end;
   &__title {
@@ -329,11 +330,117 @@ button {
   }
   &__links {
     display: flex;
-    // background-color: cyan;
     margin-left: auto;
   }
   &__link {
     margin: 0 0 0.25em 4em;
     font-weight: 200;
+  }
+}
+
+.img-grid-front {
+  width: 100.2em;
+  margin: 1em auto;
+  display: flex;
+  flex-flow: wrap;
+
+  &__img-wrapper {
+    height: 25em;
+    width: 25em;
+    overflow: hidden;
+  }
+  &__img {
+    object-fit: cover;
+    width: 25em;
+    height: 25em;
+    margin: 0.2em;
+    cursor: pointer;
+    filter: brightness(100%);
+
+    &:hover {
+      filter: brightness(70%);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+.img-expand-wrapper-front {
+  width: 100%;
+  height: 100vh;
+  background-color: cyan;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 15em;
+
+  &__left-container {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(22, 22, 22);
+  }
+  &__right-container {
+    // width: 20em;
+    // height: 100vh;
+    background-color: white;
+  }
+  &__exit-symbol {
+    cursor: pointer;
+    margin: 0.5em;
+    position: absolute;
+  }
+  &__img-container {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    padding: 3em;
+    display: flex;
+    justify-content: center;
+  }
+  &__img {
+    // width: 100%;
+    // height: 100%;
+  }
+}
+
+// --- MEDIA QUERIES --- //
+
+@media only screen and (max-width: 1610px) {
+  .nav-bar-front {
+    width: 75.2em;
+  }
+  .img-grid-front {
+    width: 75.2em;
+  }
+}
+
+@media only screen and (max-width: 1230px) {
+  .nav-bar-front {
+    width: 50.2em;
+  }
+  .img-grid-front {
+    width: 50.2em;
+  }
+}
+
+@media only screen and (max-width: 820px) {
+  .nav-bar-front {
+    margin: 1em 3em;
+    width: auto;
+  }
+
+  .img-grid-front {
+    width: auto;
+    justify-content: center;
+
+    &__img-wrapper {
+      height: 12.5em;
+      width: 12.5em;
+    }
+    &__img {
+      width: 12.5em;
+      height: 12.5em;
+    }
   }
 }
