@@ -4,7 +4,7 @@ import { ReactComponent as Left } from "../svg/left-white.svg";
 import { ReactComponent as Right } from "../svg/right-white.svg";
 import BottomPanel from "./BottomPanel";
 
-export default function ImageExpand({ expandHandler, docs, front }) {
+export default function ImageExpand({ expandHandler, docs, collection }) {
   const [imgArray, setImgArray] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [current, setCurrent] = useState(0);
@@ -13,13 +13,13 @@ export default function ImageExpand({ expandHandler, docs, front }) {
     // sort docs array so that front image is at start of array
     const docsCopy = [...docs];
     docsCopy.sort((a, b) => {
-      if (a.refString === front) return -1;
-      else if (b.refString === front) return 1;
+      if (a.refString === collection.front) return -1;
+      else if (b.refString === collection.front) return 1;
       else return 0;
     });
     setLoaded(true);
     setImgArray(docsCopy);
-  }, [docs, front]);
+  }, [docs, collection.front]);
 
   useEffect(() => {
     console.log(imgArray);
@@ -80,13 +80,20 @@ export default function ImageExpand({ expandHandler, docs, front }) {
             <img
               className='img-expand-wrapper-front__img'
               src={imgArray[current].url}
-              alt={front}
+              alt={collection.front}
             />
           )}
         </div>
       </div>
       <div className='img-expand-wrapper-front__right-container'>
-        Side Container
+        <div className='img-expand-wrapper-front__right-container__inner'>
+          <h3 className='img-expand-wrapper-front__right-container__title'>
+            {collection.title}
+          </h3>
+          <div className='img-expand-wrapper-front__right-container__description'>
+            {collection.description}
+          </div>
+        </div>
       </div>
     </div>
   );

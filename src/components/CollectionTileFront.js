@@ -32,7 +32,7 @@ export default function CollectionTileFront({ collection }) {
         <ImageExpand
           expandHandler={expandHandler}
           docs={docs}
-          front={collection.front}
+          collection={collection}
         />
       )}
     </div>

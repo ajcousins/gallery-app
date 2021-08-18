@@ -28,7 +28,7 @@ export default function Gallery() {
 
   return (
     <div>
-      <NavBarFront title='Gallery Template' />
+      <NavBarFront title='Artist Gallery & Shop' />
       <div className='img-grid-front'>
         {loaded &&
           dataRegister.map((collection) => {
