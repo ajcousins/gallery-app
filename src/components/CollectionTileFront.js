@@ -28,10 +28,9 @@ export default function CollectionTileFront({ collection }) {
   return (
     <div>
       <div className='img-grid-front__img-wrapper' onClick={expandHandler}>
+        {!isLoaded && <div className='img-grid-front__img-placeholder' />}
         <img
-          className={
-            isLoaded ? "img-grid-front__img" : "img-grid-front__img-loading"
-          }
+          className={"img-grid-front__img"}
           src={getFrontUrl(collection.front)}
           alt={collection.front}
           onLoad={handleLoad}

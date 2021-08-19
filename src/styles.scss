@@ -363,18 +363,13 @@ button {
       filter: brightness(70%);
       transition: all 0.3s ease;
     }
-
-    &-loading {
-      // object-fit: cover;
-      // background-color: red;
-      // width: 25em;
-      // height: 25em;
-      height: 100%;
-      width: 100%;
-      margin: 0.2em;
-      // cursor: pointer;
-      // filter: brightness(100%);
-    }
+  }
+  &__img-placeholder {
+    background-color: rgb(238, 238, 238);
+    object-fit: cover;
+    width: 25em;
+    height: 25em;
+    margin: 0.2em;
   }
 }
 
