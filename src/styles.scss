@@ -1,6 +1,6 @@
 $subtle-icon: #686767;
 $btn-shade: #00000012;
-$shadow: #00000036;
+$shadow: #0000001a;
 $danger: #e90052;
 $boh-background: rgb(243, 243, 243);
 $boh-text: #222424;
@@ -243,13 +243,8 @@ button {
 .collection-tile {
   display: flex;
   border-bottom: 1px solid $edge;
-
   margin-bottom: 1em;
   padding: 0.5em 1em 1.5em 0.5em;
-
-  // &:hover {
-  //   background-color: $btn-shade;
-  // }
 
   &__expanded {
     // background-color: white;
@@ -266,7 +261,7 @@ button {
     &__right {
       display: grid;
       grid-template-columns: 1fr 3em;
-      grid-template-rows: 2em auto 3em;
+      grid-template-rows: 2em auto 3em 3em;
       row-gap: 1em;
       height: 100%;
       width: 100%;
@@ -286,7 +281,6 @@ button {
   }
 
   &__edit-btn {
-    // background-color: red;
     justify-self: right;
   }
 
@@ -294,11 +288,9 @@ button {
     overflow: hidden;
     height: 8em;
     min-width: 12em;
-    // background-color: red;
   }
 
   &__img {
-    // height: 5em;
     height: 100%;
   }
 
@@ -315,6 +307,59 @@ button {
 
   &__title {
     margin: 0 0 0.5em 0;
+  }
+
+  &__sell-panel {
+    // background-color: red;
+    height: 100%;
+    &__btn {
+      margin-bottom: 0;
+      height: 100%;
+    }
+    &__input {
+      width: 5em;
+      height: 100%;
+    }
+  }
+}
+
+.sell-dialogue {
+  box-shadow: 4px 5px 0 $shadow;
+  // display: grid;
+
+  // column-gap: 1em;
+  border: 2px solid $edge;
+  margin-bottom: 1em;
+  padding: 1em;
+  // background-color: cyan;
+  &__grid {
+    display: grid;
+    grid-template-rows: 2em 3em 3em 3em;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 1em;
+    // background-color: red;
+    margin: 0 auto;
+    max-width: 18em;
+  }
+  &__title {
+    margin: 0;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  &__input {
+    width: 100%;
+    text-align: center;
+  }
+  &__btn-panel {
+    display: flex;
+    justify-content: space-evenly;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  &__error {
+    margin-bottom: 0;
+    grid-column-start: 1;
+    grid-column-end: 3;
   }
 }
 
