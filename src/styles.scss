@@ -310,10 +310,24 @@ button {
   }
 
   &__sell-panel {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    display: flex;
+    // justify-content: space-evenly;
+    align-items: center;
     // background-color: red;
     height: 100%;
+    &__price {
+      margin: 0;
+    }
+    &__qty {
+      display: flex;
+      // background-color: cyan;
+      margin: 0 auto;
+    }
     &__btn {
       margin-bottom: 0;
+
       height: 100%;
     }
     &__input {

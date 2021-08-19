@@ -4,6 +4,7 @@ import UploadForm from "./UploadForm";
 import { ReactComponent as Pencil } from "../svg/pencil2.svg";
 import { projectStorage, projectFirestore } from "../firebase";
 import deleteImageHandler from "../utils/deleteImageHandler";
+
 import SellPanel from "./SellPanel";
 import { useSelector } from "react-redux";
 
@@ -121,9 +122,9 @@ export default function ExpandedTile({
             onClick={editDescription}
           />
         </div>
-        <div>
+        <div className='collection-tile__sell-panel'>
           {collectionsModel[thisIndex].sellData ? (
-            "Sell data available!"
+            <SellPanel sellData={collectionsModel[thisIndex].sellData} />
           ) : (
             <button
               className='collection-tile__sell-panel__btn'
