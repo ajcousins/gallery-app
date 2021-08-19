@@ -458,7 +458,10 @@ button {
   }
 
   &__img {
-    height: 100%;
+    // object-fit: contain;
+    object-fit: scale-down;
+    max-height: 100%;
+    max-width: 100%;
   }
 }
 
