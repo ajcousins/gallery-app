@@ -124,7 +124,10 @@ export default function ExpandedTile({
         </div>
         <div className='collection-tile__sell-panel'>
           {collectionsModel[thisIndex].sellData ? (
-            <SellPanel sellData={collectionsModel[thisIndex].sellData} />
+            <SellPanel
+              sellData={collectionsModel[thisIndex].sellData}
+              handleSell={handleSell}
+            />
           ) : (
             <button
               className='collection-tile__sell-panel__btn'

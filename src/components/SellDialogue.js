@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function SellDialogue({
   title,
@@ -6,6 +7,21 @@ export default function SellDialogue({
   confirmSellingData,
 }) {
   const [error, setError] = useState("");
+  const collectionsModel = useSelector((state) => state.collectionsModel);
+  const thisIndex = collectionsModel.findIndex(
+    (collection) => collection.title === title
+  );
+  const [sellData, setSellData] = useState({ price: "0", quantity: "0" });
+
+  useEffect(() => {
+    if (collectionsModel[thisIndex].sellData) {
+      setSellData(collectionsModel[thisIndex].sellData);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log("sellData: ", sellData);
+  }, [sellData]);
 
   const handleConfirm = (e) => {
     e.preventDefault();
@@ -28,6 +44,12 @@ export default function SellDialogue({
     });
   };
 
+  const onChangeHandler = (e) => {
+    const sellDataCopy = { ...sellData };
+    sellDataCopy[e.target.id] = e.target.value;
+    setSellData(sellDataCopy);
+  };
+
   return (
     <div className='sell-dialogue'>
       <form>
@@ -46,6 +68,8 @@ export default function SellDialogue({
             type='number'
             step='0.01'
             min='0.01'
+            value={sellData.price}
+            onChange={onChangeHandler}
             required
           />
 
@@ -58,6 +82,8 @@ export default function SellDialogue({
             type='number'
             step='1'
             min='1'
+            value={sellData.quantity}
+            onChange={onChangeHandler}
           />
           <div className='sell-dialogue__btn-panel'>
             <button type='submit' onClick={handleConfirm}>
