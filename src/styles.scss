@@ -17,6 +17,8 @@ $front-light-text: rgb(202, 202, 202);
   color: rgb(38, 38, 38);
   box-sizing: border-box;
   color: $boh-text;
+
+  // outline: 1px solid red;
 }
 
 body {
@@ -247,7 +249,6 @@ button {
   padding: 0.5em 1em 1.5em 0.5em;
 
   &__expanded {
-    // background-color: white;
     box-shadow: 4px 5px 0 $shadow;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -313,22 +314,22 @@ button {
     grid-column-start: 1;
     grid-column-end: span 2;
     display: flex;
-    // justify-content: space-evenly;
     align-items: center;
-    // background-color: red;
     height: 100%;
     &__price {
       margin: 0;
     }
     &__qty {
       display: flex;
-      // background-color: cyan;
       margin: 0 auto;
     }
     &__btn {
       margin-bottom: 0;
 
       height: 100%;
+    }
+    &__discontinue {
+      margin: 0 0 0 1em;
     }
     &__input {
       width: 5em;
@@ -640,7 +641,7 @@ button {
     height: 100vh;
     background-color: black;
     position: absolute;
-    overflow-y: scroll;
+    // overflow-y: scroll;
     // left: 0;
     // top: 0;
     // z-index: 1;
@@ -655,6 +656,7 @@ button {
     &__right-container {
       // background-color: rgb(49, 49, 49);
       // padding: 1.5em 1em 1em 1em;
+      padding-bottom: 4em;
       &__inner {
         // width: 100%;
         // height: 100%;
@@ -669,12 +671,26 @@ button {
         // color: $front-light-text;
         // font-size: 0.8rem;
       }
+      &__sell {
+        // color: $front-light-text;
+        // font-size: 0.8rem;
+        // margin-top: auto;
+        // margin-bottom: 0;
+        margin-top: 3em;
+      }
+      &__price {
+        // color: $front-light-text;
+        // margin: 0 0 0.5em 0;
+      }
     }
     &__exit-symbol {
       // cursor: pointer;
       // margin: 0.5em;
       // position: fixed;
       right: 0;
+      height: 3em;
+      width: 3em;
+      padding: 0.54em;
     }
     &__left-symbol {
       // cursor: pointer;
@@ -715,6 +731,148 @@ button {
       // object-fit: scale-down;
       // max-height: 100%;
       // max-width: 100%;
+    }
+  }
+
+  //// ---- DASHBOARD ---- ////
+  .app-body {
+    padding: 0.5em;
+    min-width: 320px;
+    margin: 0;
+  }
+  // .small-container {
+  //   width: 100%;
+  //   // margin: 20vh auto;
+  //   background-color: red;
+  // }
+
+  .new-collection {
+    width: 100%;
+  }
+  .nav-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+
+    &__title {
+      margin: 0 0 0.5em 0;
+    }
+    &__email {
+      margin: 0 0 0.5em 0;
+    }
+    &__logout {
+      margin: 0 0 1em 0;
+    }
+  }
+  .collection-tile {
+    // display: flex;
+    flex-direction: column;
+    width: 100%;
+    width: 300px;
+    // border-bottom: 1px solid $edge;
+    // margin-bottom: 1em;
+    // padding: 0.5em 1em 1.5em 0.5em;
+    padding: 0;
+    margin: 1em 0 0 0;
+
+    &__expanded {
+      // box-shadow: 4px 5px 0 $shadow;
+      // display: grid;
+      grid-template-columns: 1fr;
+      // column-gap: 1em;
+      // border: 2px solid $edge;
+      // margin-bottom: 1em;
+      // padding: 1em;
+
+      &__right {
+        // display: grid;
+        // grid-template-columns: 1fr 3em;
+        grid-template-rows: 3em auto auto 3em;
+        // row-gap: 1em;
+        // height: 100%;
+        // width: 100%;
+      }
+    }
+
+    &__btn-panel {
+      // grid-column-start: 1;
+      // grid-column-end: span 2;
+      // display: flex;
+      // justify-content: flex-end;
+    }
+
+    &__btn {
+      // margin-left: 1em;
+      // margin-bottom: 0;
+    }
+
+    &__edit-btn {
+      // justify-self: right;
+    }
+
+    &__img-wrapper {
+      // overflow: hidden;
+      // height: 8em;
+      // min-width: 12em;
+      width: 100%;
+    }
+
+    &__img {
+      // height: 100%;
+    }
+
+    &__info {
+      // margin-left: 2em;
+      // margin-bottom: 2em;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    &__expand-btn {
+      // margin-left: auto;
+      // margin-right: 0;
+      // cursor: pointer;
+      margin: 0.5em auto;
+    }
+
+    &__title {
+      // margin: 0 0 0.5em 0;
+      width: 100%;
+      margin-top: 0.5em;
+    }
+
+    &__sell-panel {
+      // grid-column-start: 1;
+      // grid-column-end: span 2;
+      // display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      // align-items: center;
+      // height: 100%;
+      & > * {
+        margin-bottom: 1em;
+      }
+      &__price {
+        // margin: 0;
+      }
+      &__qty {
+        // display: flex;
+        // margin: 0 auto;
+        margin: 0 0 1em 0;
+      }
+      &__btn {
+        // margin-bottom: 0;
+        margin: 0 0 1em 0;
+        // height: 100%;
+      }
+      &__discontinue {
+        margin: 0;
+      }
+      &__input {
+        // width: 5em;
+        // height: 100%;
+      }
     }
   }
 }

@@ -69,7 +69,7 @@ export default function CollectionTile({ title, frontRef, description }) {
   };
 
   return (
-    <div>
+    <>
       {expanded ? (
         isSellDialogueActive ? (
           <SellDialogue
@@ -102,6 +102,6 @@ export default function CollectionTile({ title, frontRef, description }) {
           collectionViewHandler={collectionViewHandler}
         />
       )}
-    </div>
+    </>
   );
 }
