@@ -18,6 +18,7 @@ export default function ExpandedTile({
   setDescriptionEditMode,
   setExpanded,
   handleSell,
+  handleDiscontinue,
 }) {
   const collectionsModel = useSelector((state) => state.collectionsModel);
   const thisIndex = collectionsModel.findIndex(
@@ -127,6 +128,7 @@ export default function ExpandedTile({
             <SellPanel
               sellData={collectionsModel[thisIndex].sellData}
               handleSell={handleSell}
+              handleDiscontinue={handleDiscontinue}
             />
           ) : (
             <button

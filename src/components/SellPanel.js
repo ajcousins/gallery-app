@@ -1,7 +1,7 @@
 import React from "react";
 import numberToGBP from "../utils/numberToGBP";
 
-export default function SellPanel({ sellData, handleSell }) {
+export default function SellPanel({ sellData, handleSell, handleDiscontinue }) {
   const handleEdit = () => {
     handleSell();
   };
@@ -21,7 +21,8 @@ export default function SellPanel({ sellData, handleSell }) {
         Edit Selling Details
       </button>
       <button
-        className='collection-tile__sell-panel__btn'
+        className='collection-tile__sell-panel__btn  btn-danger'
+        onClick={handleDiscontinue}
         style={{ margin: "0 0 0 1em" }}
       >
         Discontinue

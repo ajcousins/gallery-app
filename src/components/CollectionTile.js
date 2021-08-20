@@ -13,6 +13,9 @@ export default function CollectionTile({ title, frontRef, description }) {
   const [descriptionEditMode, setDescriptionEditMode] = useState(false);
   const [isSellDialogueActive, setIsSellDialogueActive] = useState(false);
   const collectionsModel = useSelector((state) => state.collectionsModel);
+  const thisIndex = collectionsModel.findIndex(
+    (collection) => collection.title === title
+  );
 
   useEffect(() => {
     setDescriptionVal(description);
@@ -38,10 +41,7 @@ export default function CollectionTile({ title, frontRef, description }) {
     const collectionsModelCopy = [...collectionsModel];
 
     //// 2. Insert selling data
-    const index = collectionsModelCopy.findIndex(
-      (collection) => collection.title === title
-    );
-    collectionsModelCopy[index].sellData = sellData;
+    collectionsModelCopy[thisIndex].sellData = sellData;
     console.log(collectionsModelCopy);
 
     //// 3. Stringify each array obj
@@ -55,6 +55,17 @@ export default function CollectionTile({ title, frontRef, description }) {
 
     // Close dialogue
     handleSell();
+  };
+
+  const handleDiscontinue = () => {
+    console.log("Discontinue");
+    const collectionsModelCopy = [...collectionsModel];
+    delete collectionsModelCopy[thisIndex].sellData;
+    const collectionsStringified = collectionsModelCopy.map((collection) =>
+      JSON.stringify(collection)
+    );
+    const register = projectFirestore.collection("00_admin").doc("register");
+    register.update({ collections: collectionsStringified.reverse() });
   };
 
   return (
@@ -79,6 +90,7 @@ export default function CollectionTile({ title, frontRef, description }) {
             descriptionEditMode={descriptionEditMode}
             setDescriptionEditMode={setDescriptionEditMode}
             handleSell={handleSell}
+            handleDiscontinue={handleDiscontinue}
           />
         )
       ) : (

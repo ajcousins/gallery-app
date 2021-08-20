@@ -30,11 +30,15 @@ export default function SellDialogue({
       return;
     }
     if (e.target.form.price.value <= 0) {
-      setError("Invalid price.");
+      setError("Invalid Price.");
       return;
     }
     if (!e.target.form.quantity.value) {
       setError("Please enter a Quantity.");
+      return;
+    }
+    if (e.target.form.quantity.value <= 0) {
+      setError("Invalid Quantity.");
       return;
     }
 
