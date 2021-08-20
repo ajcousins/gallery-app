@@ -27,7 +27,7 @@ export default function Gallery() {
   }, [dataRegister]);
 
   return (
-    <div>
+    <>
       <NavBarFront title='Artist Gallery & Shop' />
       <div className='img-grid-front'>
         {loaded &&
@@ -35,6 +35,6 @@ export default function Gallery() {
             return <CollectionTileFront collection={collection} />;
           })}
       </div>
-    </div>
+    </>
   );
 }
