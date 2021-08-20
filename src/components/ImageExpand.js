@@ -3,6 +3,7 @@ import { ReactComponent as Exit } from "../svg/exit-white.svg";
 import { ReactComponent as Left } from "../svg/left-white.svg";
 import { ReactComponent as Right } from "../svg/right-white.svg";
 import BottomPanel from "./BottomPanel";
+import numberToGBP from "../utils/numberToGBP";
 
 export default function ImageExpand({ expandHandler, docs, collection }) {
   const [imgArray, setImgArray] = useState([]);
@@ -93,6 +94,15 @@ export default function ImageExpand({ expandHandler, docs, collection }) {
           <div className='img-expand-wrapper-front__right-container__description'>
             {collection.description}
           </div>
+          {collection.sellData && collection.sellData.quantity > 0 && (
+            <div className='img-expand-wrapper-front__right-container__sell'>
+              Buy this piece for:
+              <h3 className='img-expand-wrapper-front__right-container__price'>
+                {numberToGBP(collection.sellData.price)}
+              </h3>
+              <button className='btn-front'>Add to Basket</button>
+            </div>
+          )}
         </div>
       </div>
     </div>
