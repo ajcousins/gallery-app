@@ -21,9 +21,8 @@ export default function SellPanel({ sellData, handleSell, handleDiscontinue }) {
         Edit Selling Details
       </button>
       <button
-        className='collection-tile__sell-panel__discontinue  btn-danger'
+        className='collection-tile__sell-panel__discontinue btn-danger'
         onClick={handleDiscontinue}
-        // style={{ margin: "0 0 0 1em" }}
       >
         Discontinue
       </button>
