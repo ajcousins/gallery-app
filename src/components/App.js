@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import Gallery from "./Gallery";
+import Basket from "./Basket";
 // import { createBrowserHistory } from "history";
 
 // const history = createBrowserHistory();
@@ -17,6 +18,7 @@ function App() {
         <AuthProvider>
           <Switch>
             <Route exact path='/' component={Gallery} />
+            <Route exact path='/basket' component={Basket} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
 
             <Route path='/signup' component={Signup} />

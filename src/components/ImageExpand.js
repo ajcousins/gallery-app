@@ -4,11 +4,20 @@ import { ReactComponent as Left } from "../svg/left-white.svg";
 import { ReactComponent as Right } from "../svg/right-white.svg";
 import BottomPanel from "./BottomPanel";
 import numberToGBP from "../utils/numberToGBP";
+import { useSelector, useDispatch } from "react-redux";
+import { addToBasket, removeFromBasket } from "../actions";
 
-export default function ImageExpand({ expandHandler, docs, collection }) {
+export default function ImageExpand({
+  expandHandler,
+  docs,
+  collection,
+  frontUrl,
+}) {
   const [imgArray, setImgArray] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [current, setCurrent] = useState(0);
+  const basket = useSelector((state) => state.basket);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // sort docs array so that front image is at start of array
@@ -44,6 +53,11 @@ export default function ImageExpand({ expandHandler, docs, collection }) {
     } else {
       setCurrent(current - 1);
     }
+  };
+
+  const handleAddToBasket = () => {
+    // console.log(collection.title);
+    dispatch(addToBasket({ title: collection.title, frontUrl }));
   };
 
   return (
@@ -100,7 +114,9 @@ export default function ImageExpand({ expandHandler, docs, collection }) {
               <h3 className='img-expand-wrapper-front__right-container__price'>
                 {numberToGBP(collection.sellData.price)}
               </h3>
-              <button className='btn-front'>Add to Basket</button>
+              <button className='btn-front' onClick={handleAddToBasket}>
+                Add to Basket
+              </button>
             </div>
           )}
         </div>

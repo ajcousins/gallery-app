@@ -11,14 +11,14 @@ $highlight: #ffe65b;
 $front-light-text: rgb(202, 202, 202);
 
 * {
-  //   font-family: sans-serif;
-
   font-family: "Roboto", sans-serif;
   color: rgb(38, 38, 38);
   box-sizing: border-box;
   color: $boh-text;
+}
 
-  // outline: 1px solid red;
+a {
+  text-decoration: none;
 }
 
 body {
@@ -535,6 +535,29 @@ button {
   font-weight: 700;
   &:hover {
     background-color: rgb(232, 232, 232);
+  }
+}
+
+.basket {
+  background-color: cyan;
+  width: 50em;
+  padding-top: 2em;
+  margin: 1em auto;
+  &__tile {
+    background-color: red;
+    height: 12em;
+    width: 100%;
+    // padding: 1em;
+    display: flex;
+    // grid-template-columns: 1fr 2fr;
+    &__img-wrapper {
+      overflow: hidden;
+      height: 12em;
+      min-width: 12em;
+    }
+    &__img {
+      height: 100%;
+    }
   }
 }
 

@@ -41,6 +41,7 @@ export default function CollectionTileFront({ collection }) {
           expandHandler={expandHandler}
           docs={docs}
           collection={collection}
+          frontUrl={getFrontUrl(collection.front)}
         />
       )}
     </div>
