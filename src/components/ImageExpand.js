@@ -57,7 +57,13 @@ export default function ImageExpand({
 
   const handleAddToBasket = () => {
     // console.log(collection.title);
-    dispatch(addToBasket({ title: collection.title, frontUrl }));
+    dispatch(
+      addToBasket({
+        title: collection.title,
+        frontUrl,
+        price: collection.sellData.price,
+      })
+    );
   };
 
   return (

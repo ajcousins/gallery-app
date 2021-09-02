@@ -9,6 +9,7 @@ $fluorescent-hover: #00df77;
 $edge: rgb(182, 182, 182);
 $highlight: #ffe65b;
 $front-light-text: rgb(202, 202, 202);
+$front-btn: rgb(97, 97, 97);
 
 * {
   font-family: "Roboto", sans-serif;
@@ -56,6 +57,16 @@ textarea {
   }
 }
 
+.front-input {
+  font-size: 1rem;
+  padding: 0.4em 0.4em;
+  border: 1px solid $edge;
+
+  &:focus {
+    outline: 1px solid $edge;
+  }
+}
+
 input[type="file"] {
   display: none;
 }
@@ -73,6 +84,13 @@ button {
   &:hover {
     background-color: $fluorescent-hover;
   }
+}
+
+.front-btn {
+  background-color: $front-btn;
+  color: white;
+  padding: 0.5em 0.7em;
+  font-size: 0.8rem;
 }
 
 .faux-btn {
@@ -539,25 +557,45 @@ button {
 }
 
 .basket {
-  background-color: cyan;
   width: 50em;
   padding-top: 2em;
   margin: 1em auto;
   &__tile {
-    background-color: red;
-    height: 12em;
-    width: 100%;
-    // padding: 1em;
     display: flex;
-    // grid-template-columns: 1fr 2fr;
+    margin-bottom: 1em;
+
     &__img-wrapper {
       overflow: hidden;
-      height: 12em;
+      height: 8em;
       min-width: 12em;
     }
     &__img {
       height: 100%;
     }
+    &__info {
+      display: grid;
+      grid-template-columns: 1fr 6em;
+      grid-template-rows: 1fr 2.125em;
+      margin-left: 1em;
+      width: 100%;
+      padding: 0.5em;
+    }
+    &__item {
+      font-weight: 700;
+    }
+    &__unit-price {
+      text-align: right;
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+  }
+  &__tile-footer {
+    display: grid;
+    grid-template-columns: 1fr 6em;
+    padding: 1em 0.5em 1em 13.5em;
+    border-top: 1px solid $shadow;
   }
 }
 

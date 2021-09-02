@@ -26,6 +26,20 @@ export const addToBasket = (payload) => {
     payload: payload,
   };
 };
+export const updateQty = (payload) => {
+  return {
+    type: "UPDATE_BASKET_QTY",
+    payload,
+  };
+};
+
+export const deleteItem = (payload) => {
+  return {
+    type: "DELETE_BASKET_ITEM",
+    payload,
+  };
+};
+
 export const removeFromBasket = (payload) => {
   return {
     type: "REMOVE_FROM_BASKET",
