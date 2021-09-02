@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import NavBarFront from "./NavBarFront";
 import BasketTile from "./BasketTile";
 import numberToGBP from "../utils/numberToGBP";

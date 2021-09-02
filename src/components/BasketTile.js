@@ -1,10 +1,9 @@
 import React from "react";
 import numberToGBP from "../utils/numberToGBP";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateQty, deleteItem } from "../actions";
 
 export default function BasketTile({ item, qty, frontUrl, price }) {
-  const basket = useSelector((state) => state.basket);
   const dispatch = useDispatch();
 
   const handleQtyChange = (e) => {

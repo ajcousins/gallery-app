@@ -4,7 +4,7 @@ import { ReactComponent as Left } from "../svg/left-white.svg";
 import { ReactComponent as Right } from "../svg/right-white.svg";
 import BottomPanel from "./BottomPanel";
 import numberToGBP from "../utils/numberToGBP";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToBasket } from "../actions";
 import { NavLink } from "react-router-dom";
 
@@ -17,7 +17,6 @@ export default function ImageExpand({
   const [imgArray, setImgArray] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [current, setCurrent] = useState(0);
-  const basket = useSelector((state) => state.basket);
   const dispatch = useDispatch();
   const [isAddedToBasket, setIsAddedToBasket] = useState(false);
 
