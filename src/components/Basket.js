@@ -50,6 +50,11 @@ export default function Basket() {
               {numberToGBP(total)}
             </div>
           </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <button class='front-btn basket__tile__checkout'>
+              Proceed to Checkout
+            </button>
+          </div>
         </div>
       ) : (
         <div className='basket'>You have no items in your basket.</div>

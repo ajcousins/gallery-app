@@ -398,7 +398,24 @@ button {
 
 // --- FRONT OF HOUSE --- //
 
+.qty-symbol {
+  height: 1.5em;
+  width: 1.5em;
+  background-color: black;
+  position: absolute;
+  border-radius: 50%;
+  top: -1em;
+  right: -1em;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
 .nav-bar-front {
+  position: relative;
   width: 100em;
   margin: 1em auto;
   padding: 0 0.2em;
@@ -559,7 +576,11 @@ button {
 .basket {
   width: 50em;
   padding-top: 2em;
+  padding-bottom: 15em;
   margin: 1em auto;
+  &__link {
+    position: relative;
+  }
   &__tile {
     display: flex;
     margin-bottom: 1em;
@@ -590,6 +611,10 @@ button {
       grid-row-start: 1;
       grid-row-end: 3;
     }
+    &__checkout {
+      font-size: 1rem;
+      // font-weight: 700;
+    }
   }
   &__tile-footer {
     display: grid;
@@ -597,6 +622,20 @@ button {
     padding: 1em 0.5em 1em 13.5em;
     border-top: 1px solid $shadow;
   }
+}
+
+.about {
+  width: 50em;
+  padding-top: 2em;
+  padding-bottom: 15em;
+  margin: 1em auto;
+}
+
+.contact {
+  width: 50em;
+  padding-top: 2em;
+  padding-bottom: 15em;
+  margin: 1em auto;
 }
 
 // --- MEDIA QUERIES --- //

@@ -6,6 +6,8 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import Gallery from "./Gallery";
+import About from "./About";
+import Contact from "./Contact";
 import Basket from "./Basket";
 // import { createBrowserHistory } from "history";
 
@@ -18,6 +20,8 @@ function App() {
         <AuthProvider>
           <Switch>
             <Route exact path='/' component={Gallery} />
+            <Route exact path='/about' component={About} />
+            <Route exact path='/contact' component={Contact} />
             <Route exact path='/basket' component={Basket} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
 

@@ -5,7 +5,8 @@ import { ReactComponent as Right } from "../svg/right-white.svg";
 import BottomPanel from "./BottomPanel";
 import numberToGBP from "../utils/numberToGBP";
 import { useSelector, useDispatch } from "react-redux";
-import { addToBasket, removeFromBasket } from "../actions";
+import { addToBasket } from "../actions";
+import { NavLink } from "react-router-dom";
 
 export default function ImageExpand({
   expandHandler,
@@ -18,6 +19,7 @@ export default function ImageExpand({
   const [current, setCurrent] = useState(0);
   const basket = useSelector((state) => state.basket);
   const dispatch = useDispatch();
+  const [isAddedToBasket, setIsAddedToBasket] = useState(false);
 
   useEffect(() => {
     // sort docs array so that front image is at start of array
@@ -64,7 +66,10 @@ export default function ImageExpand({
         price: collection.sellData.price,
       })
     );
+    setIsAddedToBasket(true);
   };
+
+  const handleViewBasket = () => {};
 
   return (
     <div className='img-expand-wrapper-front'>
@@ -116,13 +121,39 @@ export default function ImageExpand({
           </div>
           {collection.sellData && collection.sellData.quantity > 0 && (
             <div className='img-expand-wrapper-front__right-container__sell'>
-              Buy this piece for:
-              <h3 className='img-expand-wrapper-front__right-container__price'>
-                {numberToGBP(collection.sellData.price)}
-              </h3>
-              <button className='btn-front' onClick={handleAddToBasket}>
-                Add to Basket
-              </button>
+              {isAddedToBasket ? (
+                <>
+                  <div
+                    className='img-expand-wrapper-front__right-container__description'
+                    style={{ marginBottom: "0.5em" }}
+                  >
+                    {collection.title} has been added to your basket!
+                  </div>
+                  <NavLink to='/basket' exact>
+                    <button
+                      className='btn-front'
+                      onClick={handleViewBasket}
+                      style={{ marginBottom: "0.5em" }}
+                    >
+                      View Basket
+                    </button>
+                  </NavLink>
+                </>
+              ) : (
+                <>
+                  Buy this piece for:
+                  <h3 className='img-expand-wrapper-front__right-container__price'>
+                    {numberToGBP(collection.sellData.price)}
+                  </h3>
+                  <button
+                    className='btn-front'
+                    style={{ marginBottom: "0.5em" }}
+                    onClick={handleAddToBasket}
+                  >
+                    Add to Basket
+                  </button>
+                </>
+              )}
             </div>
           )}
         </div>
